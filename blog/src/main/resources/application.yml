@@ -22,13 +22,14 @@ spring:
   jpa:
     open-in-view: true
     hibernate:
-      ddl-auto: create
+      ddl-auto: create # create로 되어 있으면 프로젝트를 실행할때마다 생성되기 때문에 최초만 create 로 설정해주고, 그 이후는 update로 해주어야 한다.
       naming:
-        physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
-      use-new-id-generator-mappings: false
-    show-sql: true
+        physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl #엔티티(테이블)를 만들 때 변수명 그대로 필드에 넣으라는 의미
+      use-new-id-generator-mappings: false # 여기서 true를 하면 JPA가 설정하는 기본 넘버링 전략을 따라간다는 의미임
+                                                                         # 현재는 따라가지 않고, 별도로 넘버링 전략을 쓰겠다는 의미가 된다.
+    show-sql: true # console 창에 sql에 대한 데이터를 표현해준다.
     properties:
-      hibernate.format_sql: true
+      hibernate.format_sql: true # console 창에 생성, 수정, 삭제, 등등 sql의 동작에 대한 부분들이 표현될 때 행구분을 하면서 보여준다.
 
   jackson:
     serialization:
