@@ -14,6 +14,27 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class HttpControllerTest {
 	
+	private static final String TAG = "HttpControllerTest : ";
+	
+	@GetMapping("/http/lombok")
+	public String lombokTest() {
+		//Member m = new Member(1, "ssar", "1234", "email");
+		
+		Member m = Member.builder().userName("ssar").password("1234").email("ssar@nate.com").build();
+		/*
+		 * 	빌더의 장점
+		 * 		1. 값을 넣을때 순서를 지키지 않아도 된다.
+		 * 		2. 생성자를 통해서 넣을 때는 넣는 순서를 지켜야 하지만 필드에 어떠한 값이 들어갈지 구지 정하지 않아도 된다.
+		 */
+		
+		System.out.println(TAG+"getter : " + m.getUserName());
+		m.setId(5000);
+		System.out.println(TAG+"getter : " + m.getUserName());
+		return "lombok test 완료";
+		
+		
+	}
+	
 	// 인터넷 브라우저 요청은 무조건 get 요청만 할 수 있다.
 	// http://localhost:8080/http/get (select)
 	@GetMapping("/http/get")
@@ -34,7 +55,7 @@ public class HttpControllerTest {
 	// #2. raw 요청방식
 	//public String postTest(@RequestBody String text) {
 		//return "post 요청  : " + text;
-	public String postTest(@RequestBody Member m) { // JSON방식으롤 요청시
+	public String postTest(@RequestBody Member m) { // JSON방식으롤 요청시Bo
 		return "post 요청 : " +m.getId()+ "," +m.getUserName()+","+m.getPassword()+","+m.getEmail();
 		
 		/*
@@ -48,7 +69,7 @@ public class HttpControllerTest {
 		 * 					-> application/JSON형태로 받을 경우 @RequestBody에 받을 타입을 작성해주면 JSON으로 데이터를 받을 수 있다.
 		 * 						(해당 방식은 MessageConverter라는 Class가 자동으로 매칭해 준다)
 		 */
-	} 
+	}
 	
 	// http://localhost:8080/http/put (update)
 	@PutMapping("/http/put")
@@ -61,6 +82,8 @@ public class HttpControllerTest {
 	public String deleteTest() {
 		return "delete 요청";
 	}
+	
+	// Body에 데이터를 Spring에서는 간단하게 Object로 Mapping 해서 받을 수 있는데 @RequestBody로 Mapping 해서 쉽게 받을 수 있다.
 	
 	
 }
