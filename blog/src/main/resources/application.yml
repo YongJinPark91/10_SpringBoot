@@ -22,7 +22,7 @@ spring:
   jpa:
     open-in-view: true
     hibernate:
-      ddl-auto: create # create로 되어 있으면 프로젝트를 실행할때마다 생성되기 때문에 최초만 create 로 설정해주고, 그 이후는 update로 해주어야 한다.
+      ddl-auto: update # create로 되어 있으면 프로젝트를 실행할때마다 생성되기 때문에 최초만 create 로 설정해주고, 그 이후는 update로 해주어야 한다.
       naming:
         physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl #엔티티(테이블)를 만들 때 변수명 그대로 필드에 넣으라는 의미
       use-new-id-generator-mappings: false # 여기서 true를 하면 JPA가 설정하는 기본 넘버링 전략을 따라간다는 의미임
