@@ -6,9 +6,11 @@ import java.util.function.Supplier;
 import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -35,12 +37,22 @@ public class DummyControllerTest {
 	 * 왜냐하면 UserRepositroy타입으로 Spring이 관리하고 있는 객체가 있다면 userRepositroy에 넣어주기 때문이다.
 	 */
 	
+	@DeleteMapping("/dummy/delete/{id}")
+	public String delete(@PathVariable int id) {
+		try {
+			userRepositroy.deleteById(id);
+		} catch (Exception e) {
+			return "삭제에 실패하였습니다. 해당 id는 DB에 존재하지 않습니다.";
+		}
+		return "삭제가 정상적으로 실행되었습니다. id : " + id;
+	}
+	
 	/*
 	 * save 함수는 id를 전달하지 않으면 insert를 해주고
 	 * save 함수는 id를 전달하면 해당 id에 대한 데이터가 있으면 update를 해주고
 	 * save 함수는 id를 전달하면 해당 id에 대한 데이터가 없으면 insert를 한다.
 	 */
-	@Transactional
+	@Transactional // 함수종료시 자동 commit을 하게 된다.
 	@PutMapping("/dummy/user/{id}")
 	public User updateUser(@PathVariable int id, @RequestBody User requestUser) {
 		System.out.println("id : " + id);
@@ -58,7 +70,7 @@ public class DummyControllerTest {
 		
 		// @Transactional 이라는 어노테이션을 사용하면
 		// save를 활용하지 않아도 업데이트가 된다. 이것을 더티 체킹이라고 한다.
-		return null;
+		return user;
 	}
 	
 	// http://localhost:8000/blog/dummy/user

@@ -39,7 +39,7 @@ public class User {
 	// 여기서 넘버링의 전략을 따라간다는 의미는 오라클에서는 시퀀스를, MySQL에서는 Auto_Increment를 사용한다는 의미임.
 	private int id; // 오라클 : 시퀀스, MySQL : auto_increment
 	
-	@Column(nullable = false, length = 30)
+	@Column(nullable = false, length = 30, unique = true)
 	private String userName; // 아이디
 	
 	@Column(nullable = false, length = 100) // 넉넉하게 잡아주는 이유는 해쉬로 변경해서 암호화 할 경우 길이가 길어질 수 있기 때문이다.
