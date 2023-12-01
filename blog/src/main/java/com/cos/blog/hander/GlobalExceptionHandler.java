@@ -1,8 +1,11 @@
 package com.cos.blog.hander;
 
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestController;
+
+import com.cos.blog.vo.ResponseVO;
 
 /*
  * exception이 발생되었을때 해당 클래스로 오게 하기 위해서는
@@ -14,8 +17,8 @@ import org.springframework.web.bind.annotation.RestController;
 public class GlobalExceptionHandler {
 
 	@ExceptionHandler(value = IllegalArgumentException.class)
-	public String handleArgumentException(IllegalArgumentException e) {
-		return "<h1>"+e.getMessage()+"</h1>";
+	public ResponseVO<String> handleArgumentException(IllegalArgumentException e) {
+		return new ResponseVO<String>(HttpStatus.INTERNAL_SERVER_ERROR.value(), e.getMessage());
 	}
 	
 	// 다른 exception을 받고 싶다면 Illegal~Exception을 변경해주면 된다.
