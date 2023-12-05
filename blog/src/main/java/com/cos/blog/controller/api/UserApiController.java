@@ -20,9 +20,6 @@ public class UserApiController {
 	@Autowired
 	private UserService userService;
 	
-	@Autowired
-	private HttpSession session;
-
 	@PostMapping("/api/user")
 	public ResponseVO<Integer> save(@RequestBody User user) { // user -> userName, password, email 은 받아오지만 Role은 받아오지 않는다.
 		System.out.println("save 호출됨");
@@ -33,9 +30,10 @@ public class UserApiController {
 		// ok.value를 하면 정상적으로 처리될 경우 200의 숫자를 넘겨 준다.
 	}
 	
+	/*
 	// 스프링 시큐리티를 이용해서 로그인
 	@PostMapping("/api/user/login")
-	public ResponseVO<Integer> login(@RequestBody User user){
+	public ResponseVO<Integer> login(@RequestBody User user, HttpSession session){
 		System.out.println("login이 정상적으로 호출됨");
 		User principal = userService.로그인(user); // principal (접근주체)
 		
@@ -45,4 +43,5 @@ public class UserApiController {
 		
 		return new ResponseVO<Integer>(HttpStatus.OK.value(), 1);
 	}
+	*/
 }

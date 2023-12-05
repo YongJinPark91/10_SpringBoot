@@ -27,7 +27,7 @@
 </div>
 
 <!-- 여기서 /를 쓰면 바로 static으로 찾아간다 -->
-<script src="/blog/js/user.js"></script>
+<script src="/js/user.js"></script>
 
 <%@ include file="../layout/footer.jsp" %>
 
