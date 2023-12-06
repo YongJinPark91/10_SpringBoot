@@ -4,16 +4,13 @@ let index = {
 		$("#btn-save").on("click", ()=>{ // 화살표 함수를 사용한 이유는 this를 바인딩 하기 위함이다.
 			this.save();
 		});
-		$("#btn-login").on("click", ()=>{ // 화살표 함수를 사용한 이유는 this를 바인딩 하기 위함이다.
-			this.login();
-		});
 	},
 	
 	save: function(){
 		//alert('user의 save 함수 호출됨');
 		
 		let data = {
-			userName: $("#userName").val(),
+			username: $("#username").val(),
 			password: $("#password").val(),
 			email: $("#email").val()
 		};
@@ -26,7 +23,7 @@ let index = {
 		$.ajax({
 			// 회원가입 수행 요청
 			type : "POST",
-			url : "/api/user",
+			url : "/auth/joinProc",
 			data : JSON.stringify(data), // http body 데이터 
 			contentType : "application/json; charset=utf-8", // body 데이터가 어떤타입인지 (MIME 타입이 필요하다)
 			dataType : "json", // 요청을 서버로해서 응답이 왔을 때, 응답이 왔을 때 기본적으로 모든 것이 문자열 (생긴게 json 이라면) => javascript 오브젝트로 변경
@@ -47,30 +44,10 @@ let index = {
 		//alert('user의 save 함수 호출됨');
 		
 		let data = {
-			userName: $("#userName").val(),
+			username: $("#username").val(),
 			password: $("#password").val(),
 		};
-		
-		$.ajax({
-			// 회원가입 수행 요청
-			type : "POST",
-			url : "/api/user/login",
-			data : JSON.stringify(data), // http body 데이터 
-			contentType : "application/json; charset=utf-8", // body 데이터가 어떤타입인지 (MIME 타입이 필요하다)
-			dataType : "json", // 요청을 서버로해서 응답이 왔을 때, 응답이 왔을 때 기본적으로 모든 것이 문자열 (생긴게 json 이라면) => javascript 오브젝트로 변경
-		}).done(function(resp){
-			alert("로그인이 완료 되었습니다.");
-			//console.log(resp);
-			alert(resp); // Controller를 거쳐 return 값이 반환되는 모습을 볼 수 있다.
-			location.href = "/";
-		}).fail(function(error){
-			alert(JSON.stringify(error));
-			
-		});
-		
 	}
-	
-	
 }
 
 index.init();

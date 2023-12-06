@@ -7,8 +7,8 @@
 
 		<form>
 		  <div class="form-group">
-		    <label for="userName">UserName:</label>
-		    <input type="email" class="form-control" placeholder="Enter UserName" id="userName">
+		    <label for="username">username:</label>
+		    <input type="email" class="form-control" placeholder="Enter username" id="username">
 		  </div>
 		  
 		  <div class="form-group">

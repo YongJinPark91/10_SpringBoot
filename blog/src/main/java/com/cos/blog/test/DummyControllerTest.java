@@ -63,7 +63,7 @@ public class DummyControllerTest {
 			return new IllegalArgumentException("수정에 실패하였습니다.");
 		});
 		requestUser.setId(id);
-		requestUser.setUserName("ssar");
+		requestUser.setUsername("ssar");
 		//userRepositroy.save(requestUser);
 		// 이렇게만 하게 되면 DB에 넣지 않은 값인 createDate, role 과 같은 값은 null로 값이 들어가게 된다.
 		// save는 id값이 있으면, 그것을 업데이트 해준다. 그러나 없는 값에 대해서는 null로 입력을 하게 된다.
@@ -133,16 +133,16 @@ public class DummyControllerTest {
 	}
 
 	@PostMapping("/dummy/join")
-	//public String join(String userName, String password, String email) { // Body의 키값과 동일하게 보내면 파라미터로 받아 진다.
+	//public String join(String username, String password, String email) { // Body의 키값과 동일하게 보내면 파라미터로 받아 진다.
 		// 변수명을 key 값으로 적기만하면 value의 값을 파라미터로 받을 수 있다는 뜻이다.
 		// 테스트를 할때 사용자로부터 3가지(아이디, 비밀번호, 이메일)을 받아야 한다.
-		//System.out.println("userName : " + userName);
+		//System.out.println("username : " + username);
 		//System.out.println("password : " + password);
 		//System.out.println("email : " + email);
 		//return "회원가입이 완료 되었습니다.";
 	public String join(User user) { // 오브젝트로 받아서 처리
 		System.out.println("id : " + user.getId());
-		System.out.println("userName : " + user.getUserName());
+		System.out.println("username : " + user.getUsername());
 		System.out.println("password : " + user.getPassword()); // 만약 password2로 body에 key값을 주면 null이 온다.
 		System.out.println("email : " + user.getEmail());
 		System.out.println("role : " + user.getRole());
@@ -158,7 +158,7 @@ public class DummyControllerTest {
 		 *     insert 
 			    into
 			        User
-			        (createDate, email, password, role, userName) 
+			        (createDate, email, password, role, username) 
 			    values
 			        (?, ?, ?, ?, ?)
 			    이렇게 쿼리가 실행되는데, Default 값이 들어갈려면 role을 빼고 insert 해야한다.

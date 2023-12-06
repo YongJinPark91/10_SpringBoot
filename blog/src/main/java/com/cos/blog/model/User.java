@@ -40,7 +40,7 @@ public class User {
 	private int id; // 오라클 : 시퀀스, MySQL : auto_increment
 	
 	@Column(nullable = false, length = 30, unique = true)
-	private String userName; // 아이디
+	private String username; // 아이디
 	
 	@Column(nullable = false, length = 100) // 넉넉하게 잡아주는 이유는 해쉬로 변경해서 암호화 할 경우 길이가 길어질 수 있기 때문이다.
 	private String password;

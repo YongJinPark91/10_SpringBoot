@@ -20,16 +20,16 @@ public class HttpControllerTest {
 	public String lombokTest() {
 		//Member m = new Member(1, "ssar", "1234", "email");
 		
-		Member m = Member.builder().userName("ssar").password("1234").email("ssar@nate.com").build();
+		Member m = Member.builder().username("ssar").password("1234").email("ssar@nate.com").build();
 		/*
 		 * 	빌더의 장점
 		 * 		1. 값을 넣을때 순서를 지키지 않아도 된다.
 		 * 		2. 생성자를 통해서 넣을 때는 넣는 순서를 지켜야 하지만 필드에 어떠한 값이 들어갈지 구지 정하지 않아도 된다.
 		 */
 		
-		System.out.println(TAG+"getter : " + m.getUserName());
+		System.out.println(TAG+"getter : " + m.getUsername());
 		m.setId(5000);
-		System.out.println(TAG+"getter : " + m.getUserName());
+		System.out.println(TAG+"getter : " + m.getUsername());
 		return "lombok test 완료";
 		
 		
@@ -38,10 +38,10 @@ public class HttpControllerTest {
 	// 인터넷 브라우저 요청은 무조건 get 요청만 할 수 있다.
 	// http://localhost:8080/http/get (select)
 	@GetMapping("/http/get")
-	//public String getTest(@RequestParam int id, @RequestParam String userName) {
+	//public String getTest(@RequestParam int id, @RequestParam String username) {
 	// 위와 같이 하나씩 받을수도 있지만, 한개의 VO에 값이 같이 들어가 있다면, 쿼리스트링으로 전달된 값은 객체로 받을 수도 있다.
 	public String getTest(Member m) {
-		return "get 요청 : " +m.getId()+ "," +m.getUserName()+","+m.getPassword()+","+m.getEmail();
+		return "get 요청 : " +m.getId()+ "," +m.getUsername()+","+m.getPassword()+","+m.getEmail();
 	}
 
 	// get요청을 제외한 나머지 요청은 Post맨을 활용한 요청 테스트를 해볼 수 있다.
@@ -51,12 +51,12 @@ public class HttpControllerTest {
 	@PostMapping("/http/post")
 	// #1. x.www.from.urlencoded 요청방식
 	//public String postTest(Member m) {
-		//return "post 요청 : " +m.getId()+ "," +m.getUserName()+","+m.getPassword()+","+m.getEmail();
+		//return "post 요청 : " +m.getId()+ "," +m.getusername()+","+m.getPassword()+","+m.getEmail();
 	// #2. raw 요청방식
 	//public String postTest(@RequestBody String text) {
 		//return "post 요청  : " + text;
 	public String postTest(@RequestBody Member m) { // JSON방식으롤 요청시Bo
-		return "post 요청 : " +m.getId()+ "," +m.getUserName()+","+m.getPassword()+","+m.getEmail();
+		return "post 요청 : " +m.getId()+ "," +m.getUsername()+","+m.getPassword()+","+m.getEmail();
 		
 		/*
 		 * post요청은 다양한 방법으로 보낼 수 있다. 
@@ -74,7 +74,7 @@ public class HttpControllerTest {
 	// http://localhost:8080/http/put (update)
 	@PutMapping("/http/put")
 	public String putTest(@RequestBody Member m) {
-		return "put 요청 : " +m.getId()+ "," +m.getUserName()+","+m.getPassword()+","+m.getEmail();
+		return "put 요청 : " +m.getId()+ "," +m.getUsername()+","+m.getPassword()+","+m.getEmail();
 	}
 	
 	// http://localhost:8080/http/delete (delete)

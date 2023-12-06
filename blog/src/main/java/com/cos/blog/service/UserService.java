@@ -2,9 +2,11 @@ package com.cos.blog.service;
 
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.cos.blog.model.RoleType;
 import com.cos.blog.model.User;
 import com.cos.blog.repository.UserRepositroy;
 
@@ -16,8 +18,15 @@ public class UserService {
 	@Autowired
 	private UserRepositroy userRepository;
 	
+	@Autowired
+	private BCryptPasswordEncoder encoder;
+	
 	@Transactional
 	public void 회원가입(User user) {
+		String rawPassword = user.getPassword(); // 원문 1234
+		String encPassword = encoder.encode(rawPassword);
+		user.setPassword(encPassword);
+		user.setRole(RoleType.USER);
 		userRepository.save(user);
 	}
 	/*
@@ -41,8 +50,10 @@ public class UserService {
 	 *          하는 것을 서비스라고 한다.
 	 */
 	
+	/* 스프링 시큐리티를 활요해서 로그인 하기 때문에 불필요 한로직이 된다.
 	@Transactional(readOnly = true) // select 할때 트랜젝션 시작, 서비스 종료시에 트랜젝션 종료 (정합성을 유지시킬 수 있음)
 	public User 로그인(User user) {
-		return userRepository.findByUserNameAndPassword(user.getUserName(), user.getPassword());
+		return userRepository.findByusernameAndPassword(user.getusername(), user.getPassword());
 	}
+	*/
 }

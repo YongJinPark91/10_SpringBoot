@@ -15,15 +15,15 @@ import lombok.Setter;
 @NoArgsConstructor
 public class Member {
 	private int id;
-	private String userName;
+	private String username;
 	private String password;
 	private String email;
 	
 	@Builder
-	public Member(int id, String userName, String password, String email) {
+	public Member(int id, String username, String password, String email) {
 		super();
 		this.id = id;
-		this.userName = userName;
+		this.username = username;
 		this.password = password;
 		this.email = email;
 	}
