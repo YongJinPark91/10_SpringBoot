@@ -1,5 +1,6 @@
 package com.cos.blog.config.auth;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -11,6 +12,7 @@ import com.cos.blog.repository.UserRepositroy;
 @Service // bean  등록
 public class PrincipalDetailService implements UserDetailsService {
 
+	@Autowired
 	private UserRepositroy userRepositroy;
 	/*
 	 * 스프링이 로그인 요청을 가로챌 때, username, password 변수 2개를 가로채는데

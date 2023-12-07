@@ -3,9 +3,6 @@
 <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 
 <sec:authorize access="isAuthenticated()">
-	<script>
-		alert("로그인이 된 사용자 입니다.");
-	</script>
 	<sec:authentication property="principal"  var ="principal" />
 </sec:authorize>
 
@@ -23,7 +20,6 @@
 </head>
 <body>
 
-<h1>${principal }</h1>
 <nav class="navbar navbar-expand-md bg-dark navbar-dark">
   <a class="navbar-brand" href="/">Blog</a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
@@ -48,8 +44,6 @@
   		</c:otherwise>
   	</c:choose>
 
-    
-    
   </div>  
 
 </nav>
