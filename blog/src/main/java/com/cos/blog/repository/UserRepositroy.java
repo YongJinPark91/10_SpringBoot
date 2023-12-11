@@ -7,6 +7,7 @@ import org.springframework.data.jpa.repository.Query;
 
 import com.cos.blog.model.User;
 
+
 public interface UserRepositroy extends JpaRepository<User, Integer> {
 	// Jpa 라이브러리 내에 find All이 있어서 모든 데이터를 받을 수 있다.
 	// 또한 insert, update도 할 수 있다.
@@ -30,3 +31,4 @@ public interface UserRepositroy extends JpaRepository<User, Integer> {
 	// 아래의 String username의 파라미터가 위의 ?에 들어가면서 쿼리가 동작한다.
 	Optional<User> findByUsername(String username);
 }
+

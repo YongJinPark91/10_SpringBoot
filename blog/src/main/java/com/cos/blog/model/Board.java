@@ -39,7 +39,6 @@ public class Board {
 	@Lob // 대용량 데이터인 경우 사용한다.
 	private String content; // 내용은 많이 길어질 수 있다. 섬머노트 라이브러리를 활용할 것인데 이때 글에 디자인 된다, 그리고 HTML 태그도 섞여서 디자인 되서 용량이 커진다.
 	
-	@ColumnDefault("0") // 글자만 ' ' 가 필요하고 숫자는 " " 만 붙여주면 된다.
 	private int count; // 조회수
 
 	// [FK가 만들어지는 과정]

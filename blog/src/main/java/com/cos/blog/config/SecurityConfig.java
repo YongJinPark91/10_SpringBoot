@@ -14,7 +14,7 @@ import com.cos.blog.config.auth.PrincipalDetail;
 import com.cos.blog.config.auth.PrincipalDetailService;
 
 // Bean 등록 : 스프링 컨테이너에서 객체를 관리할 수 있게 하는 것
-@Configuration // 이렇게 하면 bean 등록 어노테이션
+@Configuration // 이렇게 하면 bean 등록 어노테이션 
 @EnableWebSecurity // 필터링을 걸어주는 어노테이션 => 스프링 시큐리티가 활성화 되어 있는데 어떤 설정을 해당 파일(SecurityConfig)에서 하겠다는 의미
 									// 시큐리티 필터가 등록이 된다. 그 설정은 아래의 클래스에 한다.
 @EnableGlobalMethodSecurity(prePostEnabled = true) // 특정 주소로 접근을 하먄 권한 및 인증을 미리 체크 하겠다는 의미
@@ -44,7 +44,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 		http
 			.csrf().disable() // csrf 토큰 비활성화 (테스트시 걸어두는게 좋음)
 			.authorizeRequests()
-				.antMatchers("/", "/auth/**", "/js/**", "/image/**") // /auth로 들어오는 못든것을 (**을 붙여주면 auth/~~~ 뭐가 붙던지 모든것을 포함한다는 의미임)
+				.antMatchers("/", "/auth/**", "/js/**", "/image/**", "/css/**", "/dummy/**") // /auth로 들어오는 못든것을 (**을 붙여주면 auth/~~~ 뭐가 붙던지 모든것을 포함한다는 의미임)
 				.permitAll() // 모두 받아준다는 의미임
 				.anyRequest() // 이게아닌 다른 모든 요청은
 				.authenticated() // 인증이 되어야 한다. 라는 의미
