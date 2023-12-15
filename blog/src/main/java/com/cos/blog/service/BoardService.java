@@ -30,7 +30,7 @@ public class BoardService {
 	}
 	
 	public Page<Board> 글목록(Pageable pageable){
-		return boardRepository.findAll(pageable);
+		return boardRepository.findAll(pageable); 
 		/*
 		 * 페이징 처리를 하기 위해서는 Controller에서 Pageable을 인자로 받아오게 되고,
 		 * 그 값을 Service에서도 마찬가지로 인자로 받아와 findAll로 pageable을 넘기면 페이징처리가 된다.
