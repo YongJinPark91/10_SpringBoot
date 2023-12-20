@@ -45,7 +45,7 @@ public class Board {
 	@ManyToOne(fetch = FetchType.EAGER) // Many : Board, User : One => 한명의 유저는 여러개의 게시물을 쓸 수 있다.
 	@JoinColumn(name="userId") // User 테이블에서 PK를 받아서 FK를 만들게 되고, 컬럼명은 userId로 만들게 된다.
 	private User user;
-	// FK로 찾아서 넣어주는것 이 아니라
+	// FK로 찾아서 넣어주는것 이 아니라 
 	// DB는 오브젝트를 저장할 수 없다. FK, 자바는 오브젝트를 저장할 수 있다.
 	// 자바프로그램에서 DB의 자료형에 맞춰서 테이블을 만들어야 한다.
 	
